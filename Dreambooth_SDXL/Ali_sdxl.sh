@@ -1,0 +1,24 @@
+python /workspace/diffuser/SDXL/train_dreambooth_lora_sdxl.py \
+ --pretrained_model_name_or_path="SG161222/RealVisXL_V5.0" \
+ --instance_data_dir="/workspace/Data/Ali" \
+ --class_data_dir="/workspace/Data/Ali_class" \
+ --instance_prompt='avatar of ali01 man, realistic, detailed,(high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain' \
+ --class_prompt='avatar of a man, realistic, detailed,(high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain'\
+ --with_prior_preservation \
+ --num_class_images=100 \
+ --output_dir="/workspace/diffuser/SDXL/Ali" \
+ --seed=62 \
+ --resolution=768 \
+ --center_crop \
+ --train_text_encoder \
+ --train_batch_size=1 \
+ --num_train_epochs=10 \
+ --max_train_steps=1501 \
+ --checkpointing_steps=20000 \
+ --gradient_accumulation_steps=1\
+ --gradient_checkpointing \
+ --learning_rate=5e-6 \
+ --use_8bit_adam \
+ --report_to='wandb' \
+ --mixed_precision='bf16' \
+ --rank=64
