@@ -9,7 +9,7 @@ def add_processor_to_keys(keys):
         new_key_parts = []
 
         for i, part in enumerate(key_parts):
-            if part == '0' and (i > 0 and key_parts[i - 1].startswith('to')) and (i + 1 < len(key_parts) and key_parts[i + 1] == 'lora').replace('to_out.0', 'to_out'):
+            if part == '0' and (i > 0 and key_parts[i - 1].startswith('to')) and (i + 1 < len(key_parts) and key_parts[i + 1] == 'lora'):
                 continue
             new_key_parts.append(part)
             # Insert 'processor' after 'attn' if followed by 'to*'
@@ -18,7 +18,7 @@ def add_processor_to_keys(keys):
 
         # Join the modified parts back together
         modified_key = '.'.join(new_key_parts)
-        modified_key = '.'.join(new_key_parts).replace('lora_A', 'lora.down').replace('lora_B', 'lora.up')
+        modified_key = '.'.join(new_key_parts).replace('lora_A', 'lora.down').replace('lora_B', 'lora.up').replace('to_out.0', 'to_out')
         updated_keys.append(modified_key)
 
     return updated_keys
